@@ -96,22 +96,20 @@ export function main(words: string[]) {
     }
 
     console.log(state.selectedWord)
-    console.log('arr', arr)
 
-    if (arr.includes(e.key)) {
-      console.log('oh noo')
-
+    if (
+      state.correctLetters.includes(e.key) ||
+      state.wrongLetters.includes(e.key)
+    ) {
       alreadyEnteredPopup()
-    } else {
-      arr.push(e.key)
+    }
 
-      if (state.selectedWord.split('').includes(e.key)) {
-        state.correctLetters.push(e.key)
-        displayWord(state.selectedWord, state.correctLetters)
-      } else {
-        state.wrongLetters.push(e.key)
-        displayWrongLetters(state.wrongLetters)
-      }
+    if (state.selectedWord.split('').includes(e.key)) {
+      state.correctLetters.push(e.key)
+      displayWord(state.selectedWord, state.correctLetters)
+    } else {
+      state.wrongLetters.push(e.key)
+      displayWrongLetters(state.wrongLetters)
     }
 
     console.log(state.correctLetters)
