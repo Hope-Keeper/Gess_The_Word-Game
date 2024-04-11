@@ -105,15 +105,13 @@ export function main(words: string[]) {
     } else {
       arr.push(e.key)
 
-      arr.forEach((letter) => {
-        if (state.selectedWord.split('').includes(letter)) {
-          state.correctLetters.push(letter)
-          displayWord(state.selectedWord, state.correctLetters)
-        } else {
-          state.wrongLetters.push(letter)
-          displayWrongLetters(state.wrongLetters)
-        }
-      })
+      if (state.selectedWord.split('').includes(e.key)) {
+        state.correctLetters.push(e.key)
+        displayWord(state.selectedWord, state.correctLetters)
+      } else {
+        state.wrongLetters.push(e.key)
+        displayWrongLetters(state.wrongLetters)
+      }
     }
 
     console.log(state.correctLetters)
